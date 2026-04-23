@@ -1,8 +1,10 @@
-export default function Home() {
+
+export default function studente() {
   return (
     <>
       <div>
-<h1>Home page</h1>
+<h1>Student page</h1>
+
       </div>
     
     </>

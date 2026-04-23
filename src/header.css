@@ -1,0 +1,39 @@
+/* Global Reset for the body to remove white spaces */
+.header {
+    display: flex;
+    justify-content: space-between; /* Pushes Logo left and Menu right */
+    align-items: center;
+    background-color: #e0e0e0; /* Light gray background */
+    padding: 10px 20px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+header .ul {
+    display: flex;
+    list-style-type: none; /* Removes bullets */
+    margin: 0;
+    padding: 0;
+    width: 300px;
+    justify-content: space-around;
+}
+
+header .ul li {
+    padding: 10px;
+}
+
+/* Styling for the Link components */
+header.ul li{
+    text-decoration: none; /* Removes underline */
+    color: black;
+    font-size: 18px;
+}
+
+.link h2 {
+    font-size: 24px;
+}
