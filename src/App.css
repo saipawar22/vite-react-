@@ -1,19 +1,21 @@
-.user-list {
+.user-list-item {
   display: flex;
-  justify-content: space-around;
   list-style: none;
-  border: 1px solid #ccc;
-  margin: 0;
   padding: 10px;
+  border-bottom: 1px solid #ccc;
+  margin: 0;
 }
 
-.user-list-head { 
-  font-size: 20px;
+.user-list-item li {
+  width: 200px;
+}
+
+.head {
+  background-color: #f4f4f4;
   font-weight: bold;
-  background-color: #f0f0f0;
 }
-
-.user-list li {
-  width: 30%; /* Ensures columns align properly */
-  text-align: center;
-}
+.nav-list {
+  display: flex;
+  width:400px;
+  justify-content: space-around;
+  list-style: none;}
