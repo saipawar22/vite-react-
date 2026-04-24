@@ -1,31 +1,40 @@
-import {  Route, Routes } from "react-router";
-import Home from "./Home";
-import About from "./About";
-import Login  from "./Login";
-import NavBar from "./NavBar";
-import College from "./College";
-import Student from "./student";
-import Departments from "./Departments";
-import Details from "./college details";
-function App() {
-  return (
-    <>
-<NavBar/>
-      <Routes>
-        <Route path="/" element={<h1><Home/></h1>} />
-        <Route path="/about" element={<h1><About /></h1>} />
-        <Route path="/login" element={<h1><Login /></h1>} />
-        <Route path="/College" element={<h1><College /></h1>} />
-        <Route path="/*" element={<h1>404 - Page Not Found</h1>}>
-        <Route path="student" element={<h1><Student /></h1>}/>
-         <Route path="departments" element={<h1><Departments /></h1>}/>
-          <Route path="details" element={<h1><Details /></h1>}/>
-        </Route>
-        
-         
-      </Routes>
+import { useEffect, useState } from 'react';
+import './App.css';
 
-    </>
+function App() {
+  const [usersData, setUsersData] = useState([]);
+
+  useEffect(() => {
+    getUsersData();
+  }, []);
+
+  const getUsersData = async () => {
+    const url = "https://dummyjson.com/users";
+    let response = await fetch(url);
+    response = await response.json();
+    // Setting only the 'users' array from the response [00:08:38]
+    setUsersData(response.users);
+  };
+
+  return (
+    <div className="App">
+      <h1>Fetch Data from API</h1>
+      {/* Header for the list */}
+      <ul className="user-list user-list-head">
+        <li>First Name</li>
+        <li>Last Name</li>
+        <li>Age</li>
+      </ul>
+
+      {/* Mapping through the users data to display it [00:09:27] */}
+      {usersData.length > 0 && usersData.map((user) => (
+        <ul key={user.id} className="user-list">
+          <li>{user.firstName}</li>
+          <li>{user.lastName}</li>
+          <li>{user.age}</li>
+        </ul>
+      ))}
+    </div>
   );
 }
 
