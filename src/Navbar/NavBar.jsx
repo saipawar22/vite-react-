@@ -1,8 +1,8 @@
-import { Link } from "react-router"; // Use 'react-router-dom' if on older versions
+import { Link, Outlet } from "react-router"; // Use 'react-router-dom' if on older versions
 import './Header.css';
 
 function NavBar() {
-    return (
+    return (<div>
         <div className="nav-bar">
             <div className="nav.links">
                 {/* Logo Link navigating to Home */}
@@ -27,6 +27,9 @@ function NavBar() {
                 </ul>
             </div>
         </div>
+        <Outlet />
+    </div>
+        
     );
 }
 
