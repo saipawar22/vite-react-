@@ -1,6 +1,8 @@
 import { NavLink, Route, Routes } from "react-router";
 import AddUser from "./AddUser";
 import Userlist from "./Userlist";
+import EditUser from "./Useredit";
+
 
 function App(){
   return(
@@ -17,6 +19,7 @@ function App(){
   <Routes>
     <Route path="/" element={<Userlist/>}/>
         <Route path="/add" element={<AddUser/>}/>
+        <Route path="/edit/:id" element={<EditUser/>}/>
   </Routes>
    </div>
   )
