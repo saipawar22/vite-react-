@@ -4,34 +4,29 @@ import "./App.css";
 function Userlist() {
   const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(false); // [00:08:20]
- const url = "http://localhost:3000/users";
+  const url = "http://localhost:3000/users";
   useEffect(() => {
     getUserData();
   }, []);
 
   const getUserData = async () => {
     setLoading(true); // Start loading [00:09:15]
-   
+
     let response = await fetch(url);
     response = await response.json();
     setUserData(response);
     setLoading(false); // Stop loading after data is fetched [00:09:25]
   };
-  const deleteUser =async  (id) => {
-let response =await fetch(url  +"/"+id, {
-     method: "DELETE"
-   });
-     response=await response.json();
-     if(response){
+  const deleteUser = async (id) => {
+    let response = await fetch(url + "/" + id, {
+      method: "DELETE",
+    });
+    response = await response.json();
+    if (response) {
       alert("User Deleted Successfully");
     }
-      getUserData();
- 
-
+    getUserData();
   };
-  const deletedUser = (id)
-=>{
-    console.log(id);}
 
   return (
     <div className="App">
@@ -58,7 +53,7 @@ let response =await fetch(url  +"/"+id, {
               <li>{user.age}</li>
               <li>{user.email}</li>
               <li>
-                <button onClick={()=>deleteUser(user.id)}>Delete</button>
+                <button onClick={() => deleteUser(user.id)}>Delete</button>
               </li>
             </ul>
           ))}
