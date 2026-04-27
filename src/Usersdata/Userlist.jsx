@@ -7,7 +7,6 @@ function Userlist() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false); // [00:08:20]
   const url = "http://localhost:3000/users";
- 
 
   const getUserData = async () => {
     setLoading(true); // Start loading [00:09:15]
@@ -17,7 +16,7 @@ function Userlist() {
     setUserData(response);
     setLoading(false); // Stop loading after data is fetched [00:09:25]
   };
-   useEffect(() => {
+  useEffect(() => {
     getUserData();
   }, []);
   const deleteUser = async (id) => {
@@ -30,9 +29,9 @@ function Userlist() {
     }
     getUserData();
   };
-  const editUser =  (id) => {
+  const editUser = (id) => {
     navigate("/edit/" + id);
-  }
+  };
   return (
     <div className="App">
       <h1>User List with JSON Server</h1>
