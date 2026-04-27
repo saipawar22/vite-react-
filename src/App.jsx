@@ -1,24 +1,9 @@
-import { NavLink, Route, Routes } from "react-router";
-import AddUser from "./AddUser";
-import Userlist from "./Userlist";
+import UserApp from "./Usersdata/UserApp";
 
-function App(){
-  return(
-   <div>
-    <ul className="nav-list">
-      <li>
-        <NavLink to="/">list</NavLink>
-      
-      </li>
-      <li>
-        <NavLink to="/add">add</NavLink>
-      </li>
-    </ul>
-  <Routes>
-    <Route path="/" element={<Userlist/>}/>
-        <Route path="/add" element={<AddUser/>}/>
-  </Routes>
-   </div>
+function App (){
+  return (
+    <div> 
+      <UserApp/>
+    </div>
   )
-} 
-export default App;
+} export default App;

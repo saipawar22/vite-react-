@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+import "../App.css";
+import { useNavigate } from "react-router-dom";
 
 function Userlist() {
   const [userData, setUserData] = useState([]);
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false); // [00:08:20]
   const url = "http://localhost:3000/users";
-  useEffect(() => {
-    getUserData();
-  }, []);
+ 
 
   const getUserData = async () => {
     setLoading(true); // Start loading [00:09:15]
@@ -17,6 +17,9 @@ function Userlist() {
     setUserData(response);
     setLoading(false); // Stop loading after data is fetched [00:09:25]
   };
+   useEffect(() => {
+    getUserData();
+  }, []);
   const deleteUser = async (id) => {
     let response = await fetch(url + "/" + id, {
       method: "DELETE",
@@ -27,7 +30,9 @@ function Userlist() {
     }
     getUserData();
   };
-
+  const editUser =  (id) => {
+    navigate("/edit/" + id);
+  }
   return (
     <div className="App">
       <h1>User List with JSON Server</h1>
@@ -52,8 +57,10 @@ function Userlist() {
               <li>{user.name}</li>
               <li>{user.age}</li>
               <li>{user.email}</li>
+
               <li>
                 <button onClick={() => deleteUser(user.id)}>Delete</button>
+                <button onClick={() => editUser(user.id)}>Edit</button>
               </li>
             </ul>
           ))}
