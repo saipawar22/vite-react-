@@ -7,7 +7,7 @@ import React, { useState, lazy, Suspense } from 'react';
 // Lazy Load import (loads only when called)
 const User = lazy(() => import('./Username'));
 
-function App() {
+function Newadd() {
   const [load, setLoad] = useState(false);
 
   return (
@@ -30,4 +30,4 @@ function App() {
   );
 }
 
-export default App;
+export default Newadd;
