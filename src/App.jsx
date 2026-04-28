@@ -1,36 +1,45 @@
-import { useActionState } from "react";
+import React, { useState, useEffect } from 'react';
 
-function App(){
-   const handleLogin=(prevData, formData)=>{
-    let name=formData.get("name");
-let password=formData.get("password");
-let regex=/^[A-Za-z0-9]+$/i;
+function Counter() {
+  const [count, setCount] = useState(0);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount(count + 1);
+      console.log("Interval Created:", interval);
+    }, 1000);
 
-   if(name.length>5){
-    
-   }else if(regex.test(password)){
-    console.log(name ,password);
-   }
+    return () => clearInterval(interval);
+  }, [count]); // This causes the effect to re-run every second
 
-   }
+  return <h1>Count: {count}</h1>;
+}import React, { useState, useEffect, useEffectEvent } from 'react';
 
-   
+function Counter() {
+  const [count, setCount] = useState(0);
 
-   
-   const[data,action,pending]=useActionState(handleLogin)
-   
+  // useEffectEvent always has access to the latest 'count' 
+  // without being a dependency of the useEffect below.
+  const onTick = useEffectEvent(() => {
+    setCount(count + 1);
+  });
 
-    return(
-        <div>
-            <form action={action}>
-                <input type="text"  name="name" placeholder="enter name" />
-                <br /><br />
-                <input type="password" name="password" placeholder="enter password" />
-                <br /><br />
-                <button>login</button>
-            </form>
-        </div>
-    )
-} 
-export default App;
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      onTick(); // Call the stable event function
+      console.log("Interval ID (Fixed):", intervalId);
+    }, 1000);
+
+    // Cleanup: Clear interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array: runs only once on mount
+
+  return (
+    <div>
+      <h1>React 19.2: useEffectEvent</h1>
+      <h2>Count: {count}</h2>
+    </div>
+  );
+}
+
+export default Counter;

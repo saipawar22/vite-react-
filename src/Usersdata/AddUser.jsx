@@ -13,6 +13,7 @@ const createUser=async()=>{
         body: JSON.stringify({ name, age, email })
     });
     const data = await response.json();
+   
     if(data){
         alert("User added successfully");
     }

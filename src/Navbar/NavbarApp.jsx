@@ -7,11 +7,15 @@ import College from "./College";
 import Student from "./student";
 import Departments from "./Departments";
 import Details from "./college details";
+
 function Appbar() {
+  
   return (
     <>
       {/* <NavBar/> */}
+
       <Routes>
+
         <Route element={<NavBar />}>
           <Route
             path="/"
@@ -21,6 +25,7 @@ function Appbar() {
               </h1>
             }
           />
+
           <Route
             path="/about"
             element={
@@ -29,6 +34,7 @@ function Appbar() {
               </h1>
             }
           />
+
           <Route
             path="/login"
             element={
@@ -37,6 +43,7 @@ function Appbar() {
               </h1>
             }
           />
+
         </Route>
 
         <Route
@@ -47,6 +54,7 @@ function Appbar() {
             </h1>
           }
         >
+
           <Route
             index
             element={
@@ -55,6 +63,8 @@ function Appbar() {
               </h1>
             }
           />
+
+
           <Route
             path="departments"
             element={
@@ -63,6 +73,9 @@ function Appbar() {
               </h1>
             }
           />
+
+
+
           <Route
             path="details"
             element={
@@ -71,11 +84,17 @@ function Appbar() {
               </h1>
             }
           />
+
+
         </Route>
         <Route path="/*" element={<h1>404 - Page Not Found</h1>} />
       </Routes>
     </>
+
   );
+
 }
+
+
 
 export default Appbar;
