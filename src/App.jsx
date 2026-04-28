@@ -1,33 +1,45 @@
-import React, { useState, lazy, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 
+function Counter() {
+  const [count, setCount] = useState(0);
 
-// \Standard import (loads immediately with the main bundle)
- import Users from './username'; 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount(count + 1);
+      console.log("Interval Created:", interval);
+    }, 1000);
 
-// Lazy Load import (loads only when called)
-const User = lazy(() => import('./Username'));
+    return () => clearInterval(interval);
+  }, [count]); // This causes the effect to re-run every second
 
-function App() {
-  const [load, setLoad] = useState(false);
+  return <h1>Count: {count}</h1>;
+}import React, { useState, useEffect, useEffectEvent } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  // useEffectEvent always has access to the latest 'count' 
+  // without being a dependency of the useEffect below.
+  const onTick = useEffectEvent(() => {
+    setCount(count + 1);
+  });
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      onTick(); // Call the stable event function
+      console.log("Interval ID (Fixed):", intervalId);
+    }, 1000);
+
+    // Cleanup: Clear interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array: runs only once on mount
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>React Lazy Loading Tutorial</h1>
-      
-      <button onClick={() => setLoad(true)}>Load User Component</button>
-      
-      <hr />
-
-      {/* Suspense is required for lazy-loaded components. 
-          The 'fallback' prop defines what to show while the component is loading.
-      */}
-      {load ? (
-        <Suspense fallback={<h3>Loading...</h3>}>
-          <User />
-        </Suspense>
-      ) : null}
+    <div>
+      <h1>React 19.2: useEffectEvent</h1>
+      <h2>Count: {count}</h2>
     </div>
   );
 }
 
-export default App;
+export default Counter;
